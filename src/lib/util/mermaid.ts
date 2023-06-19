@@ -1,5 +1,6 @@
 import mermaid from 'mermaid';
 import type { MermaidConfig, RenderResult } from 'mermaid';
+import { insertIDs } from './insertIDs';
 
 export const render = async (
   config: MermaidConfig,
@@ -8,6 +9,7 @@ export const render = async (
 ): Promise<RenderResult> => {
   // Should be able to call this multiple times without any issues.
   mermaid.initialize(config);
+  code = insertIDs(code);
   return await mermaid.render(id, code);
 };
 
